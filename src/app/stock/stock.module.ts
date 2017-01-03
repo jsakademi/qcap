@@ -4,14 +4,17 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { StockRouting } from './stock-routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LaddaModule } from 'angular2-ladda';
+import { StockService } from './stock.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    LaddaModule,
-    StockRouting
-  ],
-  declarations: [ProductDetailsComponent]
+    imports     : [
+        CommonModule,
+        ReactiveFormsModule,
+        LaddaModule,
+        StockRouting
+    ],
+    declarations: [ProductDetailsComponent],
+    providers   : [StockService]
 })
-export class StockModule { }
+export class StockModule {
+}
