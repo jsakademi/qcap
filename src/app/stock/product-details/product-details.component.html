@@ -3,7 +3,7 @@
       (ngSubmit)="onSubmit(productDetails)">
     <div class="card">
         <div class="card-header">
-            <strong>Horizontal</strong>Form
+            <strong>Ürün Detay</strong>
         </div>
         <div class="card-block">
             <div class="form-horizontal">
@@ -11,7 +11,7 @@
                 <div class="form-group row"
                      [ngClass]="{'has-danger': productDetails.controls.name.errors && formSubmitted}">
 
-                    <label class="col-md-2 col-form-label form-control-label" for="name">Ürün Ismi</label>
+                    <label class="col-md-2 col-form-label form-control-label" for="name">Ürün İsmi</label>
 
                     <div class="col-md-10">
                         <input type="text"

@@ -1,6 +1,7 @@
 import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
 import { Product } from '../stock.models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { StockService } from '../stock.service';
 
 @Component({
     selector   : 'app-product-details',
@@ -15,7 +16,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     formSubmitting: boolean;
     productDetails: FormGroup;
     
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: FormBuilder, private stockService: StockService) {}
     
     ngOnInit() {
         this.productDetails = this.formBuilder.group({
@@ -40,6 +41,8 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
         // if form is valid then call product service
         if(valid) {
             this.formSubmitting = true;
+            // save product to backend
+            this.stockService.addProduct(value).subscribe(response => this.product = response);
         }
     }
 }
