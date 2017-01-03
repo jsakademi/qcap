@@ -21,6 +21,7 @@ import { FullLayoutComponent }          from './layouts/full-layout.component';
 import { SimpleLayoutComponent }        from './layouts/simple-layout.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
