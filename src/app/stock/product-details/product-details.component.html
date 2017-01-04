@@ -1,0 +1,102 @@
+<form novalidate
+      [formGroup]="productDetails"
+      (ngSubmit)="onSubmit(productDetails)">
+    <div class="card">
+        <div class="card-header">
+            <strong>Ürün Detay</strong>
+        </div>
+        <div class="card-block">
+            <div class="form-horizontal">
+
+                <div class="form-group row"
+                     [ngClass]="{'has-danger': productDetails.controls.name.errors && formSubmitted}">
+
+                    <label class="col-md-2 col-form-label form-control-label" for="name">Ürün İsmi</label>
+
+                    <div class="col-md-10">
+                        <input type="text"
+                               id="name"
+                               name="name"
+                               class="form-control"
+                               placeholder="Ürün İsmini Giriniz..."
+                               formControlName="name">
+
+                        <span class="form-control-feedback"
+                              *ngIf="productDetails.controls.name.errors && formSubmitted">Zorunlu Alan</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group row"
+                     [ngClass]="{'has-danger': productDetails.controls.code.errors && formSubmitted}">
+
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Ürün Kodu</label>
+
+                    <div class="col-md-10">
+                        <input type="text"
+                               id="code"
+                               name="code"
+                               class="form-control"
+                               placeholder="Ürün Kodunu Giriniz..."
+                               formControlName="code">
+
+                        <span class="form-control-feedback"
+                              *ngIf="productDetails.controls.code.errors && formSubmitted">Zorunlu Alan</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Ürün Miktarı</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Ürün Miktarı Giriniz..."
+                               formControlName="amount">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Ürün Tipi</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Ürün Tipi Giriniz..."
+                               formControlName="type">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Tedarikçi</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Tedarikçi Giriniz..."
+                               formControlName="supplier">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Maksimum Stok</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Maksimum Stok Giriniz..."
+                               formControlName="maxStock">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Minumum Stok</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Minumum Stok Giriniz..."
+                               formControlName="minStock">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label form-control-label" for="code">Birim</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="Birim Giriniz..." formControlName="unit">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-ladda" data-style="expand-right" [ladda]="formSubmitting"><i class="fa fa-dot-circle-o"></i> Kaydet</button>
+        </div>
+    </div>
+</form>

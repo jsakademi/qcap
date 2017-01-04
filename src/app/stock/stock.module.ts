@@ -4,6 +4,7 @@ import { StockRouting } from './stock-routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Restangular } from 'ng2-restangular';
 import { STOCK_REST, StockRestFactory } from './stock.rest.service'
+import { LaddaModule } from 'angular2-ladda';
 
 
 
@@ -11,11 +12,12 @@ import { STOCK_REST, StockRestFactory } from './stock.rest.service'
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    StockRouting
+    StockRouting, LaddaModule
   ],
   declarations: [],
   providers: [
     { provide: STOCK_REST, useFactory:  StockRestFactory, deps: [Restangular] } // Configurating our factory
   ]
 })
-export class StockModule { }
+export class StockModule {
+}
