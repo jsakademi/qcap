@@ -1,22 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 const routes: Routes = [
     {
-        path: '',
-        data: {
-            title: 'Stok Modulü'
-        },
+        path: 'products',
         children: [
             {
-                path: 'product-list',
-                component: ProductDetailsComponent
-            },
-            {
-                path: 'product-edit/:id',
-                component: ProductDetailsComponent
+                path: '',
+                component: ProductListComponent,
+                data: {
+                    title: 'Ürünler'
+                }
+            },{
+                path: 'create',
+                component: ProductDetailsComponent,
+                data: {
+                    title: 'Ürün Ekle'
+                }
+            },{
+                path: ':id',
+                component: ProductDetailsComponent,
+                data: {
+                    title: 'Ürün Detay'
+                }
             }
 
         ]

@@ -2,6 +2,8 @@ import { Component, OnInit, SimpleChanges, OnChanges, Input, Inject } from '@ang
 import { Product } from '../stock.models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { STOCK_REST } from "../stock.rest.service"
+import { ActivatedRoute, Router } from '@angular/router';
+import { StockService } from '../stock.service';
 
 @Component({
     selector   : 'app-product-details',
@@ -16,7 +18,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     formSubmitting: boolean;
     productDetails: FormGroup;
     
-    constructor(private formBuilder: FormBuilder, @Inject(STOCK_REST) public stockService) {}
+    constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private stockService: StockService) {}
     
     ngOnInit() {
         this.productDetails = this.formBuilder.group({
@@ -29,6 +31,10 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
             type    : [],
             unit    : []
         });
+        // check if there is id at url
+        if(this.route.snapshot.params['id']) {
+            this.stockService.products().one(this.route.snapshot.params['id']).get().subscribe(product => this.productDetails.setValue(product))
+        }
     }
     
     ngOnChanges(changes: SimpleChanges) {
@@ -42,7 +48,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
         if(valid) {
             this.formSubmitting = true;
             // save product to backend
-            this.stockService.post(value).subscribe(response => this.product = response);
+            this.stockService.products().one(this.route.snapshot.params['id']).customPUT(value).subscribe(response => this.router.navigate(['./']));
         }
     }
 }

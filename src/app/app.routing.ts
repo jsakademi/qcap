@@ -1,8 +1,5 @@
-import { NgModule }                 from '@angular/core';
-import {
-    Routes,
-    RouterModule
-}             from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 //Layouts
 import { FullLayoutComponent }      from './layouts/full-layout.component';
@@ -10,6 +7,10 @@ import { AuthGuard } from './authentication/authentication-guard.service';
 
 export const routes: Routes = [
     {
+        path      : '',
+        redirectTo: 'dashboard',
+        pathMatch : 'full'
+    }, {
         path       : '',
         component  : FullLayoutComponent,
         canActivate: [AuthGuard],
