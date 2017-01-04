@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductDetailsComponent } from './product-details/product-details.component';
 import { StockRouting } from './stock-routing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Restangular } from 'ng2-restangular';
+import { STOCK_REST, StockRestFactory } from './stock.rest.service'
+
+
 
 @NgModule({
   imports: [
@@ -10,6 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     StockRouting
   ],
-  declarations: [ProductDetailsComponent]
+  declarations: [],
+  providers: [
+    { provide: STOCK_REST, useFactory:  StockRestFactory, deps: [Restangular] } // Configurating our factory
+  ]
 })
 export class StockModule { }
