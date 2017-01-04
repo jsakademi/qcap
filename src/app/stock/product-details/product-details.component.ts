@@ -1,7 +1,7 @@
-import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnChanges, Input, Inject } from '@angular/core';
 import { Product } from '../stock.models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { StockService } from '../stock.service';
+import { STOCK_REST } from "../stock.rest.service"
 
 @Component({
     selector   : 'app-product-details',
@@ -16,7 +16,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
     formSubmitting: boolean;
     productDetails: FormGroup;
     
-    constructor(private formBuilder: FormBuilder, private stockService: StockService) {}
+    constructor(private formBuilder: FormBuilder, @Inject(STOCK_REST) public stockService) {}
     
     ngOnInit() {
         this.productDetails = this.formBuilder.group({
@@ -42,7 +42,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
         if(valid) {
             this.formSubmitting = true;
             // save product to backend
-            this.stockService.addProduct(value).subscribe(response => this.product = response);
+            this.stockService.post(value).subscribe(response => this.product = response);
         }
     }
 }

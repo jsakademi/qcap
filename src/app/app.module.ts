@@ -15,6 +15,8 @@ import { SmartResizeDirective }         from './shared/smart-resize.directive';
 
 // Routing Module
 import { AppRoutingModule }             from './app.routing';
+import { RestangularModule }            from 'ng2-restangular';
+import { environment }                  from "../environments/environment"
 
 //Layouts
 import { FullLayoutComponent }          from './layouts/full-layout.component';
@@ -30,7 +32,11 @@ import { ReactiveFormsModule } from '@angular/forms';
         Ng2BootstrapModule,
         ChartsModule,
         HttpModule,
-        AuthenticationModule
+        AuthenticationModule,
+        RestangularModule.forRoot((RestangularProvider) => {
+                RestangularProvider.setBaseUrl(environment.baseUrl);
+            }
+        ),
     ],
     declarations: [
         AppComponent,
