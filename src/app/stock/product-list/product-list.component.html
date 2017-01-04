@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-header">
+        <strong>Ürün Listesi</strong>
+        <button class="btn btn-sm float-right" [routerLink]="['./create']">Yeni</button>
+    </div>
+    <div class="card-block">
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+            <tr>
+                <th>İsim</th>
+                <th>Kod</th>
+                <th>Miktarı</th>
+                <th>Tip</th>
+                <th>Tedarikçi</th>
+                <th>Max Stok</th>
+                <th>Min Stok</th>
+                <th>Birim</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let product of products"
+                [routerLink]="['./', product._id]">
+                <td>{{product.name}}</td>
+                <td>{{product.code}}</td>
+                <td>{{product.amount}}</td>
+                <td>{{product.type}}</td>
+                <td>{{product.supplier}}</td>
+                <td>{{product.maxStock}}</td>
+                <td>{{product.minStock}}</td>
+                <td>{{product.unit}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
