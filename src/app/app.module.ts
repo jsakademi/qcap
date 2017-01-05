@@ -22,8 +22,9 @@ import { environment }                  from "../environments/environment"
 import { FullLayoutComponent }          from './layouts/full-layout.component';
 import { SimpleLayoutComponent }        from './layouts/simple-layout.component';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule,RequestOptions }    from '@angular/http';
+import { CoreRequestOptions }           from "./shared/request.options";
 
 @NgModule({
     imports: [
@@ -47,10 +48,10 @@ import { ReactiveFormsModule } from '@angular/forms';
         AsideToggleDirective,
         SmartResizeDirective
     ],
-    providers: [{
-        provide: LocationStrategy,
-        useClass: HashLocationStrategy
-    }],
+    providers: [
+        { provide: LocationStrategy, useClass: HashLocationStrategy},
+        { provide: RequestOptions, useClass: CoreRequestOptions }],
+
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

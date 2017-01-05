@@ -9,12 +9,12 @@ import { StockService } from '../stock.service';
 })
 export class ProductListComponent implements OnInit {
   @Input()
-  products: [Product];
+  products: Array<Product>;
 
   constructor(private stockService: StockService) { }
 
   ngOnInit() {
-    this.stockService.products().getList().subscribe(products => this.products = products);
+    this.stockService.getProducts().subscribe(products => this.products = products);
   }
   
   deleteProduct(product, index) {

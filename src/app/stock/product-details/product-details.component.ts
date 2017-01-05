@@ -1,7 +1,6 @@
 import { Component, OnInit, SimpleChanges, OnChanges, Input, Inject } from '@angular/core';
 import { Product } from '../stock.models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { STOCK_REST } from "../stock.rest.service"
 import { ActivatedRoute, Router } from '@angular/router';
 import { StockService } from '../stock.service';
 
@@ -33,7 +32,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
         });
         // check if there is id at url
         if(this.route.snapshot.params['id']) {
-            this.stockService.products().one(this.route.snapshot.params['id']).get().subscribe(product => this.productDetails.setValue(product))
+            this.stockService.getProduct(this.route.snapshot.params['id']).subscribe(product => this.productDetails.setValue(product))
         }
     }
     
@@ -48,7 +47,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges {
         if(valid) {
             this.formSubmitting = true;
             // save product to backend
-            this.stockService.products().one(this.route.snapshot.params['id']).customPUT(value).subscribe(response => this.router.navigate(['./']));
+            this.stockService.updateProduct(this.route.snapshot.params['id'],value).subscribe(response => this.router.navigate(['./']));
         }
     }
 }
